@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bifpivl55fkrp"]
+
+[sub_resource type="SystemFont" id="SystemFont_xgmts"]
+font_names = PackedStringArray("Dogica")
+
+[sub_resource type="SystemFont" id="SystemFont_4nqwe"]
+font_names = PackedStringArray("Dogica")
+
+[resource]
+Label/fonts/font = SubResource("SystemFont_xgmts")
+ProgressBar/font_sizes/font_size = 8
+ProgressBar/fonts/font = SubResource("SystemFont_4nqwe")

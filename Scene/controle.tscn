@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh6o2ljanovuh"]
+
+[ext_resource type="Texture2D" uid="uid://bcc6w6u3wsvpv" path="res://Sprites/Bass Hero - Controle.png" id="1_jf4st"]
+[ext_resource type="Script" path="res://Script/controle.gd" id="1_sjdtj"]
+
+[sub_resource type="SystemFont" id="SystemFont_egjjb"]
+font_names = PackedStringArray("Dogica")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma2cc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2ou0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ybn2s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pvfnt"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sjdtj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144.627, 78.625)
+scale = Vector2(0.158591, 0.158591)
+texture = ExtResource("1_jf4st")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 115.0
+offset_right = 56.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(1, 0.768627, 0.0156863, 1)
+theme_override_fonts/font = SubResource("SystemFont_egjjb")
+theme_override_font_sizes/font_size = 32
+text = "3"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 291.0
+offset_bottom = 159.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ma2cc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_t2ou0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ybn2s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pvfnt")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

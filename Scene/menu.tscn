@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://b83ljuh63h14y"]
+
+[ext_resource type="Script" path="res://Script/menu.gd" id="1_qo2vc"]
+[ext_resource type="Texture2D" uid="uid://cqduc8r45uh3k" path="res://Sprites/Bass.png" id="2_5r5u1"]
+[ext_resource type="Texture2D" uid="uid://coqe1btwcv7vq" path="res://Sprites/icon.png" id="2_cfs6d"]
+[ext_resource type="PackedScene" uid="uid://5dav2l4qbwn7" path="res://Scene/wishlis.tscn" id="5_qt6x0"]
+[ext_resource type="Texture2D" uid="uid://bi8in78irijfy" path="res://Sprites/Devie_p.png" id="5_ylhi1"]
+[ext_resource type="AudioStream" uid="uid://bsnxi2hwdyhkn" path="res://Sounds/Slap.mp3" id="7_vkg4n"]
+
+[sub_resource type="SystemFont" id="SystemFont_gge0b"]
+font_names = PackedStringArray("Dogica")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dracf"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="SystemFont" id="SystemFont_60hht"]
+font_names = PackedStringArray("Dogica")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qo2vc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="Bass" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+position = Vector2(141.493, 29.946)
+rotation = 1.3725
+scale = Vector2(0.783039, 3.18274)
+texture = ExtResource("2_5r5u1")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = 3.0
+offset_right = 62.5
+offset_bottom = 75.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_cfs6d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 127.0
+offset_right = 176.0
+offset_bottom = 141.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.768627, 0.0156863, 1)
+theme_override_fonts/font = SubResource("SystemFont_gge0b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dracf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dracf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dracf")
+text = "Slap"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 17.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.571, 0.571)
+pivot_offset = Vector2(144.724, 75.3769)
+mouse_filter = 2
+
+[node name="Dv" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 58.8528
+offset_top = 52.8546
+offset_right = 88.8528
+offset_bottom = 86.8546
+rotation = -0.282743
+scale = Vector2(1.30361, 1.30361)
+pivot_offset = Vector2(15, 17)
+texture = ExtResource("5_ylhi1")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 55.0
+offset_right = 225.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_60hht")
+theme_override_font_sizes/font_size = 0
+text = "Starring
+Davie504"
+
+[node name="Slap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vkg4n")
+
+[node name="TextureButton" parent="." instance=ExtResource("5_qt6x0")]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 134.0
+offset_right = 667.0
+offset_bottom = 329.0
+scale = Vector2(0.087, 0.087)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="Slap" to="." method="_on_slap_finished"]

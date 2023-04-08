@@ -1,0 +1,185 @@
+[gd_scene load_steps=26 format=3 uid="uid://xlmeryrlmkpu"]
+
+[ext_resource type="Script" path="res://Script/jogo.gd" id="1_js3fs"]
+[ext_resource type="PackedScene" uid="uid://tnipryxrw02g" path="res://Scene/bass.tscn" id="1_pvc1g"]
+[ext_resource type="Texture2D" uid="uid://sfdt55tt5etf" path="res://Sprites/Devie.png" id="2_ywv22"]
+[ext_resource type="Texture2D" uid="uid://b5g57xw3a7htt" path="res://Sprites/BK.png" id="3_ta7dg"]
+[ext_resource type="AudioStream" uid="uid://c6ilq5xievotd" path="res://Sounds/Musica 1.mp3" id="4_klymk"]
+[ext_resource type="Texture2D" uid="uid://c5pwcvxu5j5wx" path="res://Sprites/LT.png" id="6_pi257"]
+[ext_resource type="Script" path="res://Script/MS.gd" id="6_xr1l4"]
+[ext_resource type="AudioStream" uid="uid://b503ygnigy1vr" path="res://Sounds/Aproved.mp3" id="8_xw0re"]
+[ext_resource type="AudioStream" uid="uid://bkiyrhww241fd" path="res://Sounds/Very_epic.mp3" id="9_p4rt5"]
+[ext_resource type="AudioStream" uid="uid://bhgbseth3jt43" path="res://Sounds/Unbeliveble.mp3" id="10_d7m02"]
+[ext_resource type="AudioStream" uid="uid://crpp20iq521qi" path="res://Sounds/Apla.mp3" id="11_ntsny"]
+[ext_resource type="AudioStream" uid="uid://youv56uhiwma" path="res://Sounds/Vaia.mp3" id="12_jeus7"]
+[ext_resource type="AudioStream" uid="uid://dl0u201bbtid7" path="res://Sounds/OMG.mp3" id="13_svijy"]
+[ext_resource type="Texture2D" uid="uid://djy8t2x4i33hu" path="res://Sprites/Indicador.png" id="14_x1bv8"]
+[ext_resource type="Script" path="res://Script/ProgressBar.gd" id="14_ywtsw"]
+[ext_resource type="Theme" uid="uid://bifpivl55fkrp" path="res://Font/theme.tres" id="15_y4d50"]
+[ext_resource type="PackedScene" uid="uid://5dav2l4qbwn7" path="res://Scene/wishlis.tscn" id="17_rajgx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxpo5"]
+atlas = ExtResource("2_ywv22")
+region = Rect2(0, 0, 116, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d4g8"]
+atlas = ExtResource("2_ywv22")
+region = Rect2(116, 0, 116, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snurr"]
+atlas = ExtResource("2_ywv22")
+region = Rect2(0, 120, 116, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hw2va"]
+animations = [{
+"frames": [SubResource("AtlasTexture_sxpo5"), SubResource("AtlasTexture_6d4g8"), SubResource("AtlasTexture_snurr")],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_h5gka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yu681"]
+resource_name = "esp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0.0392157, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7egu"]
+_data = {
+"RESET": SubResource("Animation_h5gka"),
+"esp": SubResource("Animation_yu681")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qktys"]
+size = Vector2(109, 3)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-2, 1)
+script = ExtResource("1_js3fs")
+
+[node name="BK" type="Sprite2D" parent="."]
+modulate = Color(0.32549, 0.337255, 0.305882, 1)
+position = Vector2(147, 78)
+scale = Vector2(1.03659, 1.03659)
+texture = ExtResource("3_ta7dg")
+
+[node name="Bass" parent="." instance=ExtResource("1_pvc1g")]
+position = Vector2(145, 78)
+
+[node name="Control" parent="." instance=ExtResource("17_rajgx")]
+offset_left = 9.0
+offset_top = 137.0
+offset_right = 669.0
+offset_bottom = 332.0
+scale = Vector2(0.087, 0.087)
+
+[node name="Devie" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(80, 76)
+frames = SubResource("SpriteFrames_hw2va")
+frame = 1
+playing = true
+
+[node name="MS" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_klymk")
+autoplay = true
+script = ExtResource("6_xr1l4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_top = -3.0
+offset_right = 294.0
+offset_bottom = 159.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i7egu")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(145, 79)
+enabled = false
+color = Color(0.12549, 0.85098, 1, 1)
+texture = ExtResource("6_pi257")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(156, 164)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(52.5, -2.5)
+shape = SubResource("RectangleShape2D_qktys")
+
+[node name="APROVD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xw0re")
+
+[node name="EP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_p4rt5")
+
+[node name="UN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_d7m02")
+
+[node name="APLAUSOS" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ntsny")
+volume_db = -7.0
+
+[node name="VAIA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_jeus7")
+volume_db = -7.0
+
+[node name="OMG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_svijy")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 137.0
+offset_top = 80.0
+offset_right = 141.0
+offset_bottom = 146.0
+theme = ExtResource("15_y4d50")
+max_value = 30.0
+value = 2.0
+show_percentage = false
+script = ExtResource("14_ywtsw")
+
+[node name="Sprite2D" type="Sprite2D" parent="ProgressBar"]
+texture = ExtResource("14_x1bv8")
+
+[node name="Ponts" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 87.0
+offset_bottom = 32.0
+theme = ExtResource("15_y4d50")
+theme_override_font_sizes/font_size = 8
+
+[connection signal="especial" from="Bass" to="." method="_on_bass_especial"]
+[connection signal="menos" from="Bass" to="." method="_on_bass_menos"]
+[connection signal="off_especial" from="Bass" to="." method="_on_bass_off_especial"]
+[connection signal="beat" from="MS" to="." method="_on_ms_beat"]
+[connection signal="finished" from="MS" to="." method="_on_ms_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

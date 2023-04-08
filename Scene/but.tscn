@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1pan3472c2t7"]
+
+[ext_resource type="Texture2D" uid="uid://bedxoko3bl20j" path="res://Sprites/B1.png" id="1_aqyep"]
+[ext_resource type="Script" path="res://Script/but.gd" id="2_q76gs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw0nk"]
+size = Vector2(24, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsoql"]
+size = Vector2(20, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku5q"]
+size = Vector2(16, 4)
+
+[node name="B1" type="Sprite2D"]
+position = Vector2(25, 73)
+texture = ExtResource("1_aqyep")
+script = ExtResource("2_q76gs")
+
+[node name="Okay" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Okay"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_xw0nk")
+
+[node name="Good" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Good"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_xsoql")
+
+[node name="Perfect" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Perfect"]
+shape = SubResource("RectangleShape2D_2ku5q")
+
+[connection signal="area_entered" from="Okay" to="." method="_on_okay_area_entered"]
+[connection signal="area_exited" from="Okay" to="." method="_on_okay_area_exited"]
+[connection signal="area_entered" from="Good" to="." method="_on_good_area_entered"]
+[connection signal="area_exited" from="Good" to="." method="_on_good_area_exited"]
+[connection signal="area_entered" from="Perfect" to="." method="_on_perfect_area_entered"]
+[connection signal="area_exited" from="Perfect" to="." method="_on_perfect_area_exited"]

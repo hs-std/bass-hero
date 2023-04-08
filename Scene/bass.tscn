@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://tnipryxrw02g"]
+
+[ext_resource type="Texture2D" uid="uid://cqduc8r45uh3k" path="res://Sprites/Bass.png" id="1_ukqfa"]
+[ext_resource type="Script" path="res://Script/bass.gd" id="2_805yx"]
+[ext_resource type="PackedScene" uid="uid://b1pan3472c2t7" path="res://Scene/but.tscn" id="3_75ujd"]
+[ext_resource type="Texture2D" uid="uid://b12rim0xk3xpg" path="res://Sprites/B2.png" id="4_lvwgx"]
+[ext_resource type="Script" path="res://Script/TP.gd" id="5_r0ujj"]
+[ext_resource type="Texture2D" uid="uid://bbhnj0dpj46l2" path="res://Sprites/B3.png" id="5_xd3k6"]
+[ext_resource type="Texture2D" uid="uid://cdee8esvlki5n" path="res://Sprites/B4.png" id="6_thsu5"]
+[ext_resource type="Texture2D" uid="uid://dawq3y4xucw6m" path="res://Sprites/Panel1.png" id="8_udsya"]
+[ext_resource type="Texture2D" uid="uid://pvb80invagv" path="res://Sprites/Panel2.png" id="9_w7fni"]
+
+[node name="Bass" type="Node2D"]
+texture_filter = 1
+position = Vector2(145, 79)
+script = ExtResource("2_805yx")
+
+[node name="Bass" type="Sprite2D" parent="."]
+texture = ExtResource("1_ukqfa")
+
+[node name="TP" type="TextureProgressBar" parent="."]
+offset_left = -10.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 68.0
+fill_mode = 3
+texture_under = ExtResource("8_udsya")
+texture_progress = ExtResource("9_w7fni")
+script = ExtResource("5_r0ujj")
+
+[node name="N1" parent="." instance=ExtResource("3_75ujd")]
+visible = false
+input = "a"
+
+[node name="N2" parent="." instance=ExtResource("3_75ujd")]
+visible = false
+position = Vector2(50, 73)
+texture = ExtResource("4_lvwgx")
+input = "s"
+
+[node name="N3" parent="." instance=ExtResource("3_75ujd")]
+visible = false
+position = Vector2(76, 73)
+texture = ExtResource("5_xd3k6")
+input = "d"
+
+[node name="N4" parent="." instance=ExtResource("3_75ujd")]
+visible = false
+position = Vector2(101, 73)
+texture = ExtResource("6_thsu5")
+input = "f"
+
+[connection signal="especial" from="TP" to="." method="_on_especial"]
+[connection signal="off_especial" from="TP" to="." method="_on_off_especial"]
+[connection signal="menos" from="N1" to="." method="_on_menos"]
+[connection signal="menos" from="N2" to="." method="_on_menos"]
+[connection signal="menos" from="N3" to="." method="_on_menos"]
+[connection signal="menos" from="N4" to="." method="_on_menos"]

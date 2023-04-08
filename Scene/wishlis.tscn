@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://5dav2l4qbwn7"]
+
+[ext_resource type="Script" path="res://Script/wishlis.gd" id="1_3rtpe"]
+[ext_resource type="Texture2D" uid="uid://xykaevl1cq1f" path="res://Sprites/wishlist.png" id="1_yya7m"]
+
+[sub_resource type="SystemFont" id="SystemFont_wq7ch"]
+font_names = PackedStringArray("Dogica")
+font_style = 1
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_yya7m")
+script = ExtResource("1_3rtpe")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 48.0
+offset_right = 654.0
+offset_bottom = 144.0
+theme_override_fonts/font = SubResource("SystemFont_wq7ch")
+theme_override_font_sizes/font_size = 33
+text = "Wishlist our 
+
+game \"Caution\""
+
+[connection signal="button_down" from="." to="." method="_on_button_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_button_pressed"]
